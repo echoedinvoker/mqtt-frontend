@@ -6,7 +6,8 @@ export default function MQTTDisplay() {
   const [client, setClient] = useState<mqtt.MqttClient | null>(null);
 
   useEffect(() => {
-    const mqttClient = mqtt.connect('ws://localhost:9001');
+    // const mqttClient = mqtt.connect('ws://localhost:9001'); // mosquitto
+    const mqttClient = mqtt.connect('ws://localhost:8083/mqtt'); // emqx
 
     mqttClient.on('connect', () => {
       console.log('Connected');
