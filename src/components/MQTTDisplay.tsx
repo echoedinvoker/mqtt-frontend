@@ -53,9 +53,16 @@ export default function MQTTDisplay() {
       >Forward 10 meter</button>
 
       {messages && Object.keys(messages).map((topic, index) => (
-        <div key={index} className="flex justify-between">
-          <div className="text-gray-600">{topic}</div>
-          <div className="text-gray-800">{messages[topic]}</div>
+        <div key={index} className="flex flex-col mt-4">
+          <h3 className="text-lg font-semibold">{topic}</h3>
+          {Object.entries(JSON.parse(messages[topic]))
+            .map(([key, value], index) => <div key={index} className="flex justify-between">
+              <span className="font-semibold">{key}</span>
+              <span>{JSON.stringify(value)}</span>
+            </div>
+            )
+          }
+
         </div>
       ))}
     </div>
