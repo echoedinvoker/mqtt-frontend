@@ -12,6 +12,7 @@ export default function MQTTDisplay() {
     mqttClient.on('connect', () => {
       console.log('Connected');
       mqttClient.subscribe('omni/agv/control');
+      mqttClient.subscribe('omni/agv/telemetry');
     });
 
     mqttClient.on('message', (topic, payload) => {
