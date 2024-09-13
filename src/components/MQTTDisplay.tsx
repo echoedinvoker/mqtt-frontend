@@ -38,7 +38,7 @@ export default function MQTTDisplay() {
       const payload = {
         type: 'move',
         direction: 1,
-        magnitude: 10
+        magnitude: 1000.0
       }
       client.publish('omni/agv/control', JSON.stringify(payload));
     }
