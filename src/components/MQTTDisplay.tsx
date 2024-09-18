@@ -38,7 +38,16 @@ export default function MQTTDisplay() {
       const payload = {
         type: 'move',
         direction: 1,
-        magnitude: 1000.0
+        magnitude: 10000.0
+      }
+      client.publish('omni/agv/control', JSON.stringify(payload));
+    }
+  }
+
+  function handlePublishNone() {
+    if (client) {
+      const payload = {
+        type: 'none'
       }
       client.publish('omni/agv/control', JSON.stringify(payload));
     }
@@ -51,6 +60,10 @@ export default function MQTTDisplay() {
         onClick={handlePublish}
         className="bg-blue-500 text-white px-4 py-2 rounded-lg mt-4"
       >Forward 10 meter</button>
+      <button
+        onClick={handlePublishNone}
+        className="bg-green-500 text-white px-4 py-2 rounded-lg mt-4"
+      >Set Type to None</button>
 
       {messages && Object.keys(messages).map((topic, index) => (
         <div key={index} className="flex flex-col mt-4">
@@ -62,7 +75,6 @@ export default function MQTTDisplay() {
             </div>
             )
           }
-
         </div>
       ))}
     </div>
